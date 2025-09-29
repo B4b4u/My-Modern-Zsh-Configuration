@@ -2,7 +2,7 @@
 
 This repository contains my personal Zsh configuration, designed for a fast, powerful, and visually appealing terminal experience. It's built around the `zinit` plugin manager for performance and includes a highly customized prompt.
 
-![Zsh Prompt Screenshot]([https://user-images.githubusercontent.com/username/repo/screenshot.png](https://github.com/B4b4u/My-Modern-Zsh-Configuration/blob/main/screenshot/screen.png)) 
+![Zsh Prompt Screenshot] (screenshot/screen.png)
 ## Features
 
 -   **Fast Startup**: Uses `zinit` for efficient plugin and snippet loading.
