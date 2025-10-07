@@ -1,0 +1,140 @@
+# ==============================================================================
+# Zsh Aliases
+# A curated list of aliases for a modern, efficient command-line experience.
+# ==============================================================================
+
+
+# ------------------------------------------------------------------------------
+# 1. Core Command Overrides (Modern Replacements)
+# ------------------------------------------------------------------------------
+
+# Use exa, a modern replacement for ls
+# https://github.com/ogham/exa
+alias ls='exa --color=always --group-directories-first'      # Simple, clean listing
+alias l='exa -l --color=always --group-directories-first'     # Long format
+alias la='exa -a --color=always --group-directories-first'    # Show all files (including hidden)
+alias ll='exa -al --color=always --group-directories-first'   # Show all files in long format
+alias lt='exa -aT --color=always --group-directories-first'   # Tree listing of all files
+alias l.="exa -a | egrep '^\.'"                               # List only dotfiles
+
+# Use bat, a cat clone with syntax highlighting and Git integration
+# https://github.com/sharkdp/bat
+# Note: On Debian/Ubuntu, the command is often 'batcat'
+alias cat='batcat'
+
+# Use btop, a modern and interactive resource monitor
+# https://github.com/aristocratos/btop
+alias top='btop'
+
+# Use ncdu, a disk usage analyzer with an ncurses interface
+# https://dev.yorhel.de/ncdu
+# Note: This overrides the standard 'nc' (netcat) command
+alias nc='ncdu'
+
+# Use fd, a simple, fast and user-friendly alternative to find
+# https://github.com/sharkdp/fd
+# Note: On Debian/Ubuntu, the command is 'fdfind'
+alias fd='fdfind'
+
+# Grep with colors
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+
+# ------------------------------------------------------------------------------
+# 2. Navigation
+# ------------------------------------------------------------------------------
+
+# Quickly navigate up the directory tree
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+
+# ------------------------------------------------------------------------------
+# 3. File and Directory Management
+# ------------------------------------------------------------------------------
+
+# Create a directory and cd into it immediately
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Tar extraction and creation
+alias untar='tar -zxvf '  # Decompress .tar.gz or .tgz files
+alias tarnow='tar -acf '  # Create a compressed archive (trailing space for completion)
+
+# Continue interrupted downloads with wget
+alias wget='wget -c '
+
+
+# ------------------------------------------------------------------------------
+# 4. Git
+# ------------------------------------------------------------------------------
+
+alias g='git'
+alias gs='git status -s'               # Compact git status
+alias ga='git add'
+alias gaa='git add -A'                 # Add all changes
+alias gc='git commit -m'
+alias gca='git commit -am'             # Add all and commit
+alias gp='git push'
+alias gl='git log --oneline --graph --decorate --all' # Pretty and compact git log
+
+
+# ------------------------------------------------------------------------------
+# 5. System & Maintenance
+# ------------------------------------------------------------------------------
+
+# Debian/Ubuntu system update
+alias update="sudo apt update && sudo apt upgrade -y"
+
+# Update grub configuration
+alias grubup="sudo update-grub"
+
+# Get short hardware info
+alias hw='hwinfo --short'
+
+# View systemd journal errors
+alias jctl="journalctl -p 3 -xb"
+
+
+# ------------------------------------------------------------------------------
+# 6. Network
+# ------------------------------------------------------------------------------
+
+# Get public IP address
+alias myip='curl ifconfig.me'
+
+# Ping with a limited count of 5 packets
+alias ping5='ping -c 5'
+
+
+# ------------------------------------------------------------------------------
+# 7. Development & Editing
+# ------------------------------------------------------------------------------
+
+# Open multiple files in nvim splits
+alias n='nvim -O'
+
+# Edit shell configuration files
+alias ec="$EDITOR $HOME/.zshrc"       # Edit .zshrc
+alias ea="$EDITOR $HOME/.zsh_aliases" # Edit this aliases file
+alias sc="source $HOME/.zshrc"        # Reload zsh configuration
+
+
+# ------------------------------------------------------------------------------
+# 8. Zsh Power-ups (Suffix & Global Aliases)
+# ------------------------------------------------------------------------------
+
+# Suffix Aliases: Open a file by typing its name
+alias -s txt=nano
+alias -s py=code
+alias -s json=code
+
+# Global Aliases: Pipe any command's help output to bat for nice formatting
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
